@@ -1,0 +1,53 @@
+================================================================================
+                    SENAI SOLUTIONS - AI INTERN ASSESSMENT
+                          SUBMISSION DELIVERABLES
+================================================================================
+
+Candidate: Aditi Pawar
+Role: AI Intern
+Date: June 12, 2026
+
+--------------------------------------------------------------------------------
+1. GITHUB REPOSITORY LINK (PUBLIC)
+--------------------------------------------------------------------------------
+URL: https://github.com/Aadi-ti-pawar/SenAI
+
+This repository contains:
+- Complete production-grade FastAPI backend and Celery-ready worker logic.
+- Glassmorphic vanilla CSS dashboard frontend.
+- Markdown playbooks for the RAG Knowledge base (under /knowledge_base).
+- Complete PostgreSQL database schemas and vector tables (backend/database_schema.sql).
+- DB Schema ER Diagram (ERdiagram.pgerd).
+- OpenAPI/Swagger Specification (openapi.json).
+- Atomic commit logs representing step-by-step developments.
+
+--------------------------------------------------------------------------------
+2. SYSTEM ARCHITECTURE REPORT
+--------------------------------------------------------------------------------
+File: walkthrough.docx (Included in local workspace & pushed to GitHub root)
+
+This Word Document details:
+- Component-level architecture mapping.
+- RAG Cosine similarity optimization strategy.
+- ReAct Agent Reasoning safeguards and critical threat overrides.
+- Ingestion Idempotency database constraints.
+- Step-by-step scenario verification results for GDPR requests, Ransomware threats,
+  chatbot errors, VIP customer churn, and pro-rata upgrades.
+
+--------------------------------------------------------------------------------
+3. SCREEN RECORDING
+--------------------------------------------------------------------------------
+Please find the companion screen recording walkthrough video file uploaded 
+directly to this Dropbox folder.
+
+Demonstrated flows in the video:
+1. Real-time stream ingestion simulator running with duplicate message checks.
+2. Ingestion pre-filtering (spam blocking, priority scoring, security alerts).
+3. The ReAct Agent step-by-step tool logs and vector search citations.
+4. Triage of special scenarios (Bob Outage P0 issue, Karen Churn crisis with web
+   crawlers loading public review scores).
+5. Analytics dashboard showing category distributions and sentiment tracking.
+
+================================================================================
+Thank you for reviewing my submission. I look forward to your feedback.
+================================================================================
