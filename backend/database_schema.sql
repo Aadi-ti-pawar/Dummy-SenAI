@@ -324,7 +324,7 @@ CREATE TRIGGER update_processing_jobs_updated_at BEFORE UPDATE ON processing_job
 -- ============================================================================
 
 -- Daily email stats
-CREATE VIEW IF NOT EXISTS email_stats_daily AS
+CREATE OR REPLACE VIEW email_stats_daily AS
 SELECT
     DATE(timestamp) as date,
     COUNT(*) as total_emails,
@@ -338,7 +338,7 @@ GROUP BY DATE(timestamp)
 ORDER BY date DESC;
 
 -- Thread status summary
-CREATE VIEW IF NOT EXISTS thread_summary AS
+CREATE OR REPLACE VIEW thread_summary AS
 SELECT
     t.id,
     t.thread_id,
@@ -353,7 +353,7 @@ LEFT JOIN emails e ON t.id = e.thread_id
 GROUP BY t.id, t.thread_id, t.sender_email, t.status;
 
 -- Churn risk summary
-CREATE VIEW IF NOT EXISTS churn_risk_summary AS
+CREATE OR REPLACE VIEW churn_risk_summary AS
 SELECT
     c.id,
     c.email,

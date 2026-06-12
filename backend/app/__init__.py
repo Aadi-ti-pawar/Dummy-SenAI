@@ -1,0 +1,1 @@
+"""SenAI CRM backend package."""
