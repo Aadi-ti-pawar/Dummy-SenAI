@@ -67,3 +67,14 @@ def list_agent_actions(
         }
         for action, email in rows
     ]
+
+
+@router.get("/intelligence/reputation")
+def get_reputation(
+    entity: str = Query(default="SenAI"),
+    db: Session = Depends(get_db),
+):
+    from app.services.intelligence_service import ReputationScraperService
+    service = ReputationScraperService(db)
+    return service.get_reputation(entity)
+

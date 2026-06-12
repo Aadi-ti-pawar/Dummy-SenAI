@@ -164,3 +164,20 @@ class SentimentTrend(Base):
     moving_avg_30d: Mapped[Decimal | None] = mapped_column(Numeric(3, 2))
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+class WebIntelligenceCache(Base):
+    __tablename__ = "web_intelligence_cache"
+
+    id = uuid_pk()
+    source_url: Mapped[str] = mapped_column(String(500), nullable=False)
+    target_entity: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
+    source_type: Mapped[str | None] = mapped_column(String(50), index=True)
+    scraped_data: Mapped[dict] = mapped_column(JSONB, default=dict, nullable=False)
+    scraped_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, nullable=False, index=True)
+    expires_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, index=True)
+    http_status: Mapped[int | None] = mapped_column(Integer)
+    scrape_success: Mapped[bool] = mapped_column(Boolean, default=True)
+    error_message: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

@@ -21,6 +21,7 @@ class Settings(BaseSettings):
     max_request_bytes: int = 1_048_576
     enable_celery_dispatch: bool = True
     email_processing_body_limit: int = 10_000
+    embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     gemini_api_key: str | None = None
     gemini_model: str = "gemini-1.5-flash"
     classification_confidence_floor: float = 0.70
