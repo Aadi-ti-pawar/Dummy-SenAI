@@ -6,20 +6,13 @@ Loads email-data-advanced.json into PostgreSQL database
 import json
 import psycopg2
 from psycopg2.extras import execute_batch
-from datetime import datetime
-import os
+from backend.config import settings
 
 # Database connection parameters
-DB_CONFIG = {
-    'host': 'localhost',
-    'port': 5432,
-    'database': 'crm_ai',
-    'user': 'postgres',
-    'password': 'postgres'  # Change this to your PostgreSQL password
-}
+DB_CONFIG = settings.db_config
 
 # File path
-JSON_FILE = r'c:\Users\Aditi\OneDrive\Desktop\Dummy-SenAI\Dummy-SenAI\email-data-advanced.json'
+JSON_FILE = str(settings.email_data_file)
 
 
 def load_email_data(json_file):
