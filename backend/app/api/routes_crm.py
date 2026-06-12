@@ -45,6 +45,39 @@ def get_dashboard_stats(db: Session = Depends(get_db)) -> DashboardStatsResponse
         spam=spam_count,
     )
 
+@router.get("/emails")
+def list_emails(
+    limit: int = Query(default=100, ge=1, le=200),
+    db: Session = Depends(get_db),
+) -> list[dict[str, Any]]:
+    emails = db.execute(
+        select(Email).order_by(Email.timestamp.desc()).limit(limit)
+    ).scalars().all()
+    return [
+        {
+            "id": str(e.id),
+            "thread_id": str(e.thread_id),
+            "message_id": e.message_id,
+            "sender": e.sender,
+            "recipient": e.recipient,
+            "subject": e.subject,
+            "body": e.body,
+            "timestamp": e.timestamp.isoformat(),
+            "category": e.category or "Other",
+            "sentiment": e.sentiment or "Neutral",
+            "sentiment_score": float(e.sentiment_score) if e.sentiment_score is not None else 0.0,
+            "urgency": e.urgency or "Medium",
+            "confidence": float(e.confidence) if e.confidence is not None else 1.0,
+            "requires_human": e.requires_human,
+            "status": e.status,
+            "is_internal": e.is_internal,
+            "is_spam": e.is_spam,
+            "is_security_alert": e.is_security_alert,
+            "is_legal_threat": e.is_legal_threat,
+        }
+        for e in emails
+    ]
+
 @router.get("/threads/{contact_email}", response_model=list[ThreadHistoryResponse])
 def get_threads_by_contact(contact_email: str, db: Session = Depends(get_db)) -> list[ThreadHistoryResponse]:
     # Verify contact exists
